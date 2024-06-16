@@ -1,0 +1,423 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Rest API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/user/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register new user & get token",
+                "operationId": "register",
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "example": {
+                                "name": "Billy Michael Junus Saija",
+                                "email": "billymj77@gmail.com",
+                                "password": "billy123",
+                                "password_confirmation": "billy123"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Log in to existing user & get token",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "example": {
+                                "email": "billymj77@gmail.com",
+                                "password": "billy123"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/logout": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Log out & destroy self token",
+                "operationId": "logout",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "description": "User Email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/api/book": {
+            "get": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Display a listing of items",
+                "operationId": "index",
+                "responses": {
+                    "200": {
+                        "description": "successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Store a newly created item",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            },
+                            "example": {
+                                "title": "Siti Nurbaya",
+                                "author": "Marah Roesli",
+                                "publisher": "MG",
+                                "publication_year": "1922",
+                                "cover": "https://id.images.search.yahoo.com/images/view;_ylt=Awr1TVUYEldmu50YHHnNQwx.;_ylu=c2VjA3NyBHNsawNpbWcEb2lkA2UzZTA4MTMyNjE5MWFlOGY2NzdiMGI0OTI2MTM5NzMxBGdwb3MDMTEEaXQDYmluZw--?back=https%3A%2F%2Fid.images.search.yahoo.com%2Fsearch%2Fimages%3Fp%3DSITI%2BNURBAYA%2BBOOK%2BCOVERE%26type%3DE210ID91215G0%26fr%3Dmcafee%26fr2%3Dpiv-web%26tab%3Dorganic%26ri%3D11&w=316&h=475&imgurl=i.gr-assets.com%2Fimages%2FS%2Fcompressed.photo.goodreads.com%2Fbooks%2F1325137737l%2F13333419.jpg&rurl=https%3A%2F%2Fkabarmedia.github.io%2Fkelebihan-dan-kekurangan-novel-siti-nurbaya%2F&size=48.7KB&p=SITI+NURBAYA+BOOK+COVERE&oid=e3e081326191ae8f677b0b4926139731&fr2=piv-web&fr=mcafee&tt=Kelebihan+Dan+Kekurangan+Novel+Siti+Nurbaya+%E2%80%93+kabarmedia.github.io&b=0&ni=21&no=11&ts=&tab=organic&sigr=0CPhUoNuvJ67&sigb=dp_JNP7aZEDA&sigi=vQi7t2VtHazU&sigt=.15BDFmgpc7g&.crumb=5OHK9wpKdN5&fr=mcafee&fr2=piv-web&type=E210ID91215G0",
+                                "description": "Novel ini menceritakan kisah tragis cinta antara Siti Nurbaya dan Samsulbahri. Siti Nurbaya adalah seorang gadis muda yang cantik dan berbudi luhur dari keluarga sederhana. Ia jatuh cinta dengan Samsulbahri, teman masa kecilnya yang juga mencintainya. Namun, cinta mereka terhalang oleh adat dan tekanan sosial.",
+                                "price": 72.5
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "201": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            }
+        },
+        "/api/books/{id}": {
+            "get": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Display the specified item",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of item that needs to be displayed",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Update the specified item",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of item that needs to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body description",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            },
+                            "example": {
+                                "title": "Siti Nurbaya",
+                                "author": "Marah Roesli",
+                                "publisher": "MG",
+                                "publication_year": "1922",
+                                "cover": "https://id.images.search.yahoo.com/images/view;_ylt=Awr1TVUYEldmu50YHHnNQwx.;_ylu=c2VjA3NyBHNsawNpbWcEb2lkA2UzZTA4MTMyNjE5MWFlOGY2NzdiMGI0OTI2MTM5NzMxBGdwb3MDMTEEaXQDYmluZw--?back=https%3A%2F%2Fid.images.search.yahoo.com%2Fsearch%2Fimages%3Fp%3DSITI%2BNURBAYA%2BBOOK%2BCOVERE%26type%3DE210ID91215G0%26fr%3Dmcafee%26fr2%3Dpiv-web%26tab%3Dorganic%26ri%3D11&w=316&h=475&imgurl=i.gr-assets.com%2Fimages%2FS%2Fcompressed.photo.goodreads.com%2Fbooks%2F1325137737l%2F13333419.jpg&rurl=https%3A%2F%2Fkabarmedia.github.io%2Fkelebihan-dan-kekurangan-novel-siti-nurbaya%2F&size=48.7KB&p=SITI+NURBAYA+BOOK+COVERE&oid=e3e081326191ae8f677b0b4926139731&fr2=piv-web&fr=mcafee&tt=Kelebihan+Dan+Kekurangan+Novel+Siti+Nurbaya+%E2%80%93+kabarmedia.github.io&b=0&ni=21&no=11&ts=&tab=organic&sigr=0CPhUoNuvJ67&sigb=dp_JNP7aZEDA&sigi=vQi7t2VtHazU&sigt=.15BDFmgpc7g&.crumb=5OHK9wpKdN5&fr=mcafee&fr2=piv-web&type=E210ID91215G0",
+                                "description": "Novel ini menceritakan kisah tragis cinta antara Siti Nurbaya dan Samsulbahri. Siti Nurbaya adalah seorang gadis muda yang cantik dan berbudi luhur dari keluarga sederhana. Ia jatuh cinta dengan Samsulbahri, teman masa kecilnya yang juga mencintainya. Namun, cinta mereka terhalang oleh adat dan tekanan sosial.",
+                                "price": 72.5
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "404": {
+                        "description": "Item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "book"
+                ],
+                "summary": "Remove the specified item",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of item that needs to be removed",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Item not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "passport_token_ready": [],
+                        "passport": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Book": {
+                "title": "Book model",
+                "description": "Book model",
+                "required": [
+                    "title",
+                    "author"
+                ],
+                "xml": {
+                    "name": "Book"
+                }
+            },
+            "User": {
+                "title": "User model",
+                "description": "User model",
+                "xml": {
+                    "name": "User"
+                }
+            }
+        },
+        "securitySchemes": {
+            "passport_token_ready": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Enter token in format without \"Bearer \"",
+                "name": "Authorization",
+                "in": "header"
+            },
+            "passport": {
+                "type": "oauth2",
+                "description": "Laravel passport oauth2 security",
+                "in": "header",
+                "scheme": "https",
+                "flows": {
+                    "password": {
+                        "authorizationUrl": "http://localhost/oauth/authorize",
+                        "tokenUrl": "http://localhost/oauth/token",
+                        "refreshUrl": "http://localhost/token/refresh",
+                        "scopes": []
+                    }
+                }
+            }
+        }
+    }
+}
